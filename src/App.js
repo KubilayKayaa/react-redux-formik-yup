@@ -1,18 +1,15 @@
-import signUpImage from "./assets/signup-image.svg";
-import SignUp from "./components/SignUp";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./components/Home";
+import Users from "./components/Users";
 
 function App() {
   return (
-    <div className="container mt-3">
-      <div className="row align-items-center">
-        <div className="col-md-5 ">
-          <SignUp />
-        </div>
-        <div className="col-md-7 d-flex align-items-center justify-content-center">
-          <img src={signUpImage} alt="signup" className="img-fluid" />
-        </div>
-      </div>
-    </div>
+    <Router>
+      <Switch>
+        <Route path="/" component={Home} exact />
+        <Route path="/users" component={Users} />
+      </Switch>
+    </Router>
   );
 }
 

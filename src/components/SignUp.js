@@ -3,8 +3,14 @@ import { Formik, Form } from "formik";
 import TextField from "./TextField";
 import * as Yup from "yup";
 import "../App.css";
+import { connect } from "react-redux";
+import { addUser } from "../store/actions";
+import { v4 as uuidv4 } from "uuid";
+import { useHistory } from "react-router-dom";
 
-const SignUp = () => {
+const SignUp = (props) => {
+  const history = useHistory();
+
   const validate = Yup.object({
     firstName: Yup.string()
       .max(15, "Must be 15 characters or less.")
@@ -23,6 +29,7 @@ const SignUp = () => {
   return (
     <Formik
       initialValues={{
+        id: uuidv4(),
         firstName: "",
         lastName: "",
         email: "",
@@ -31,7 +38,8 @@ const SignUp = () => {
       }}
       validationSchema={validate}
       onSubmit={(values) => {
-        console.log(values);
+        props.addUser(values);
+        history.push("/users");
       }}
     >
       {(formik) => (
@@ -63,4 +71,10 @@ const SignUp = () => {
   );
 };
 
-export default SignUp;
+const mapStateToProps = (state) => {
+  return {
+    users: state.users,
+  };
+};
+
+export default connect(mapStateToProps, { addUser })(SignUp);

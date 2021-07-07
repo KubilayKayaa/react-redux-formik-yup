@@ -1,31 +1,16 @@
 import React from "react";
 import { Formik, Form } from "formik";
-import TextField from "./TextField";
-import * as Yup from "yup";
-import "../App.css";
+import TextField from "../TextField";
+import "../../App.css";
 import { connect } from "react-redux";
-import { addUser } from "../store/actions";
+import { addUser } from "../../store/actions";
 import { v4 as uuidv4 } from "uuid";
 import { useHistory } from "react-router-dom";
+import validate from "./validate";
 
 const SignUp = (props) => {
   const history = useHistory();
 
-  const validate = Yup.object({
-    firstName: Yup.string()
-      .max(15, "Must be 15 characters or less.")
-      .required("Required."),
-    lastName: Yup.string()
-      .max(20, "Must be 20 characters or less.")
-      .required("Required."),
-    email: Yup.string().email("Email is invalid.").required("Required."),
-    password: Yup.string()
-      .min(6, "Password must be at least 6 characters.")
-      .required("Required."),
-    confirmPassword: Yup.string()
-      .oneOf([Yup.ref("password"), null], "Password must match.")
-      .required("Confirm password is required."),
-  });
   return (
     <Formik
       initialValues={{

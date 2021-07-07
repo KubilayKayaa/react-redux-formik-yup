@@ -1,6 +1,6 @@
 import React from "react";
 import signUpImage from "../assets/signup-image.svg";
-import SignUp from "../components/SignUp";
+import SignUp from "../components/SignUp/SignUp";
 
 const Home = () => {
   return (

@@ -11,10 +11,3 @@ export const deleteUser = (id) => {
     payload: id,
   };
 };
-
-export const editUser = (id) => {
-  return {
-    type: "EDIT_USER",
-    payload: id,
-  };
-};
